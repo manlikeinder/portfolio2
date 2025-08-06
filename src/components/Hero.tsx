@@ -1,8 +1,10 @@
-import React, { useEffect, useRef } from 'react';
-import { ChevronDown, Github, Linkedin, Mail } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { ChevronDown, Github, Linkedin, Mail, Download, User } from 'lucide-react';
 
 const Hero: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [typedText, setTypedText] = useState('');
+  const fullText = 'Full Stack Developer';
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -24,21 +26,21 @@ const Hero: React.FC = () => {
     }> = [];
 
     // Create particles
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 50; i++) {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
-        size: Math.random() * 2 + 1,
-        opacity: Math.random() * 0.5 + 0.2,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        size: Math.random() * 1.5 + 0.5,
+        opacity: Math.random() * 0.3 + 0.1,
       });
     }
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      particles.forEach((particle, index) => {
+      particles.forEach((particle) => {
         particle.x += particle.vx;
         particle.y += particle.vy;
 
@@ -49,22 +51,6 @@ const Hero: React.FC = () => {
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(59, 130, 246, ${particle.opacity})`;
         ctx.fill();
-
-        // Connect nearby particles
-        particles.slice(index + 1).forEach((otherParticle) => {
-          const dx = particle.x - otherParticle.x;
-          const dy = particle.y - otherParticle.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-
-          if (distance < 100) {
-            ctx.beginPath();
-            ctx.moveTo(particle.x, particle.y);
-            ctx.lineTo(otherParticle.x, otherParticle.y);
-            ctx.strokeStyle = `rgba(59, 130, 246, ${0.1 * (1 - distance / 100)})`;
-            ctx.lineWidth = 1;
-            ctx.stroke();
-          }
-        });
       });
 
       requestAnimationFrame(animate);
@@ -81,6 +67,20 @@ const Hero: React.FC = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  useEffect(() => {
+    let index = 0;
+    const timer = setInterval(() => {
+      if (index <= fullText.length) {
+        setTypedText(fullText.slice(0, index));
+        index++;
+      } else {
+        clearInterval(timer);
+      }
+    }, 100);
+
+    return () => clearInterval(timer);
+  }, []);
+
   const scrollToNext = () => {
     const aboutSection = document.getElementById('about');
     if (aboutSection) {
@@ -89,93 +89,91 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gray-50">
       <canvas
         ref={canvasRef}
         className="absolute inset-0 z-0"
-        style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%)' }}
       />
       
-      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-        <div className="mb-8 animate-fadeInUp">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-gray-900 via-blue-800 to-cyan-700 bg-clip-text text-transparent">
-            Full Stack Developer
-          </h1>
-          <div className="text-xl md:text-2xl text-gray-700 mb-8 h-8">
-            <span className="typewriter">Building amazing digital experiences</span>
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-4">
+        {/* Terminal Window */}
+        <div className="bg-gray-900 rounded-lg shadow-2xl overflow-hidden border border-gray-700 max-w-4xl mx-auto">
+          {/* Terminal Header */}
+          <div className="flex items-center justify-between bg-gray-800 px-4 py-3 border-b border-gray-700">
+            <div className="flex space-x-2">
+              <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+              <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+              <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+            </div>
+            <div className="text-gray-400 text-sm font-mono">user@portfolio:~</div>
+            <div className="w-16"></div>
+          </div>
+
+          {/* Terminal Content */}
+          <div className="p-8 font-mono text-green-400">
+            <div className="flex items-center mb-4">
+              <span className="text-green-500">user@portfolio:~$</span>
+              <span className="ml-2 text-white">{typedText}</span>
+              <span className="animate-pulse text-green-400">|</span>
+            </div>
+            
+            <div className="grid md:grid-cols-2 gap-8 items-center mt-8">
+              <div className="space-y-4">
+                <div className="text-gray-300">
+                  <span className="text-cyan-400">Passionate about creating beautiful,</span><br/>
+                  <span className="text-cyan-400">functional and user-centered digital</span><br/>
+                  <span className="text-cyan-400">experiences.</span>
+                </div>
+                <div className="text-gray-300">
+                  <span className="text-cyan-400">Currently pursuing my degree in</span><br/>
+                  <span className="text-cyan-400">Software Engineering.</span>
+                </div>
+                
+                <div className="flex space-x-4 mt-6">
+                  <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded transition-colors flex items-center space-x-2">
+                    <Mail size={16} />
+                    <span>Contact Me</span>
+                  </button>
+                  <button className="border border-gray-600 hover:border-gray-500 text-gray-300 hover:text-white px-6 py-2 rounded transition-colors flex items-center space-x-2">
+                    <Download size={16} />
+                    <span>Resume</span>
+                  </button>
+                </div>
+              </div>
+              
+              <div className="flex justify-center">
+                <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-cyan-400 shadow-lg">
+                  <div className="w-full h-full bg-gradient-to-br from-blue-600/20 to-cyan-600/20 flex items-center justify-center">
+                    <User size={80} className="text-cyan-400" />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div className="flex justify-center space-x-6 mb-12 animate-fadeInUp delay-300">
-          <a
-            href="https://github.com/manlikeinder"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-3 bg-white/60 backdrop-blur-sm rounded-full border border-gray-300 hover:border-cyan-600 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-cyan-600/20"
-          >
-            <Github size={24} />
-          </a>
-          <a
-            href="#"
-            className="p-3 bg-white/60 backdrop-blur-sm rounded-full border border-gray-300 hover:border-cyan-600 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-cyan-600/20"
-          >
-            <Linkedin size={24} />
-          </a>
-          <a
-            href="mailto:your@email.com"
-            className="p-3 bg-white/60 backdrop-blur-sm rounded-full border border-gray-300 hover:border-cyan-600 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-cyan-600/20"
-          >
-            <Mail size={24} />
-          </a>
+        {/* GitHub Stats */}
+        <div className="flex justify-center space-x-4 mt-8">
+          <div className="bg-gray-800 text-yellow-400 px-4 py-2 rounded-full text-sm font-mono">
+            3 Stars
+          </div>
+          <div className="bg-gray-800 text-gray-400 px-4 py-2 rounded-full text-sm font-mono">
+            0 Forks
+          </div>
+          <div className="bg-gray-800 text-green-400 px-4 py-2 rounded-full text-sm font-mono">
+            37 Public Repos
+          </div>
         </div>
 
-        <button
-          onClick={scrollToNext}
-          className="animate-bounce p-2 rounded-full bg-gradient-to-r from-blue-600/20 to-cyan-600/20 border border-cyan-600/30 hover:border-cyan-600 transition-all duration-300"
-        >
-          <ChevronDown size={24} />
-        </button>
+        <div className="text-center mt-8">
+          <button
+            onClick={scrollToNext}
+            className="animate-bounce p-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 hover:border-cyan-400 transition-all duration-300"
+          >
+            <ChevronDown size={24} className="text-white" />
+          </button>
+        </div>
       </div>
-
-      <style jsx>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        .animate-fadeInUp {
-          animation: fadeInUp 0.8s ease-out forwards;
-        }
-        
-        .delay-300 {
-          animation-delay: 0.3s;
-        }
-        
-        .typewriter {
-          overflow: hidden;
-          border-right: 0.15em solid #0891b2;
-          white-space: nowrap;
-          margin: 0 auto;
-          letter-spacing: 0.15em;
-          animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
-        }
-        
-        @keyframes typing {
-          from { width: 0 }
-          to { width: 100% }
-        }
-        
-        @keyframes blink-caret {
-          from, to { border-color: transparent }
-          50% { border-color: #0891b2 }
-        }
-      `}</style>
     </section>
   );
 };

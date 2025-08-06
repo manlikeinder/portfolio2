@@ -3,39 +3,27 @@ import React from 'react';
 const Skills: React.FC = () => {
   const skillCategories = [
     {
-      title: 'Frontend',
+      title: 'Code/JS',
       skills: [
-        { name: 'React/Next.js', level: 95 },
-        { name: 'TypeScript', level: 90 },
-        { name: 'Tailwind CSS', level: 95 },
-        { name: 'Vue.js', level: 80 }
+        { name: 'JavaScript/TypeScript', level: 95 },
+        { name: 'React', level: 90 },
+        { name: 'TailwindCSS', level: 95 }
       ]
     },
     {
-      title: 'Backend',
+      title: 'Express',
       skills: [
-        { name: 'Node.js', level: 90 },
-        { name: 'Python', level: 85 },
-        { name: 'Express.js', level: 88 },
-        { name: 'FastAPI', level: 82 }
+        { name: 'MongoDB', level: 88 },
+        { name: 'RESTful APIs', level: 85 },
+        { name: 'Firebase', level: 90 }
       ]
     },
     {
-      title: 'Database',
+      title: 'VS Code',
       skills: [
-        { name: 'PostgreSQL', level: 88 },
-        { name: 'MongoDB', level: 85 },
-        { name: 'Redis', level: 80 },
-        { name: 'Supabase', level: 90 }
-      ]
-    },
-    {
-      title: 'Tools & Others',
-      skills: [
-        { name: 'Git/GitHub', level: 95 },
-        { name: 'Docker', level: 85 },
-        { name: 'AWS/Vercel', level: 88 },
-        { name: 'GraphQL', level: 80 }
+        { name: 'Figma', level: 88 },
+        { name: 'Responsive Design', level: 95 },
+        { name: 'WordPress', level: 80 }
       ]
     }
   ];
