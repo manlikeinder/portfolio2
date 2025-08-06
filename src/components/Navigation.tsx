@@ -22,7 +22,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection }) => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-40 bg-white/90 backdrop-blur-lg border-b border-gray-200 shadow-sm">
+    <nav className="fixed top-0 left-0 right-0 z-40 bg-gray-900/90 backdrop-blur-lg border-b border-gray-700 shadow-sm">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <div className="text-xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
@@ -37,7 +37,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection }) => {
                 className={`relative px-3 py-2 text-sm font-medium transition-colors duration-300 ${
                   activeSection === item.id
                     ? 'text-cyan-600'
-                    : 'text-gray-600 hover:text-gray-900'
+                    : 'text-gray-300 hover:text-white'
                 }`}
               >
                 {item.label}

@@ -89,7 +89,7 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gray-50">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gray-900">
       <canvas
         ref={canvasRef}
         className="absolute inset-0 z-0"
@@ -97,24 +97,24 @@ const Hero: React.FC = () => {
       
       <div className="relative z-10 w-full max-w-6xl mx-auto px-4">
         {/* Terminal Window */}
-        <div className="bg-gray-900 rounded-lg shadow-2xl overflow-hidden border border-gray-700 max-w-4xl mx-auto">
+        <div className="bg-gray-800 rounded-lg shadow-2xl overflow-hidden border border-gray-600 max-w-4xl mx-auto animate-fade-in-up">
           {/* Terminal Header */}
-          <div className="flex items-center justify-between bg-gray-800 px-4 py-3 border-b border-gray-700">
+          <div className="flex items-center justify-between bg-gray-700 px-4 py-3 border-b border-gray-600">
             <div className="flex space-x-2">
-              <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-              <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-              <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+              <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
+              <div className="w-3 h-3 bg-yellow-500 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
+              <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
             </div>
             <div className="text-gray-400 text-sm font-mono">user@portfolio:~</div>
             <div className="w-16"></div>
           </div>
 
           {/* Terminal Content */}
-          <div className="p-8 font-mono text-green-400">
+          <div className="p-8 font-mono text-green-400 animate-fade-in" style={{ animationDelay: '0.5s' }}>
             <div className="flex items-center mb-4">
               <span className="text-green-500">user@portfolio:~$</span>
               <span className="ml-2 text-white">{typedText}</span>
-              <span className="animate-pulse text-green-400">|</span>
+              <span className="animate-blink text-green-400">|</span>
             </div>
             
             <div className="grid md:grid-cols-2 gap-8 items-center mt-8">
@@ -130,11 +130,11 @@ const Hero: React.FC = () => {
                 </div>
                 
                 <div className="flex space-x-4 mt-6">
-                  <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded transition-colors flex items-center space-x-2">
+                  <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded transition-all duration-300 hover:scale-105 hover:shadow-lg flex items-center space-x-2">
                     <Mail size={16} />
                     <span>Contact Me</span>
                   </button>
-                  <button className="border border-gray-600 hover:border-gray-500 text-gray-300 hover:text-white px-6 py-2 rounded transition-colors flex items-center space-x-2">
+                  <button className="border border-gray-600 hover:border-gray-500 text-gray-300 hover:text-white px-6 py-2 rounded transition-all duration-300 hover:scale-105 hover:shadow-lg flex items-center space-x-2">
                     <Download size={16} />
                     <span>Resume</span>
                   </button>
@@ -142,7 +142,7 @@ const Hero: React.FC = () => {
               </div>
               
               <div className="flex justify-center">
-                <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-cyan-400 shadow-lg">
+                <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-cyan-400 shadow-lg animate-float">
                   <div className="w-full h-full bg-gradient-to-br from-blue-600/20 to-cyan-600/20 flex items-center justify-center">
                     <User size={80} className="text-cyan-400" />
                   </div>
@@ -153,14 +153,14 @@ const Hero: React.FC = () => {
         </div>
 
         {/* GitHub Stats */}
-        <div className="flex justify-center space-x-4 mt-8">
-          <div className="bg-gray-800 text-yellow-400 px-4 py-2 rounded-full text-sm font-mono">
+        <div className="flex justify-center space-x-4 mt-8 animate-fade-in-up" style={{ animationDelay: '1s' }}>
+          <div className="bg-gray-800 text-yellow-400 px-4 py-2 rounded-full text-sm font-mono hover:scale-110 transition-transform duration-300">
             3 Stars
           </div>
-          <div className="bg-gray-800 text-gray-400 px-4 py-2 rounded-full text-sm font-mono">
+          <div className="bg-gray-800 text-gray-400 px-4 py-2 rounded-full text-sm font-mono hover:scale-110 transition-transform duration-300">
             0 Forks
           </div>
-          <div className="bg-gray-800 text-green-400 px-4 py-2 rounded-full text-sm font-mono">
+          <div className="bg-gray-800 text-green-400 px-4 py-2 rounded-full text-sm font-mono hover:scale-110 transition-transform duration-300">
             37 Public Repos
           </div>
         </div>
@@ -168,7 +168,7 @@ const Hero: React.FC = () => {
         <div className="text-center mt-8">
           <button
             onClick={scrollToNext}
-            className="animate-bounce p-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 hover:border-cyan-400 transition-all duration-300"
+            className="animate-bounce p-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 hover:border-cyan-400 transition-all duration-300 hover:scale-110"
           >
             <ChevronDown size={24} className="text-white" />
           </button>

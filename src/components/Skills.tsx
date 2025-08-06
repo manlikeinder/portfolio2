@@ -29,10 +29,10 @@ const Skills: React.FC = () => {
   ];
 
   return (
-    <section id="skills" className="py-20 px-4">
+    <section id="skills" className="py-20 px-4 bg-gray-900">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent animate-fade-in-up">
             Skills & Technologies
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-cyan-600 mx-auto rounded-full"></div>
@@ -42,19 +42,20 @@ const Skills: React.FC = () => {
           {skillCategories.map((category, categoryIndex) => (
             <div
               key={categoryIndex}
-              className="p-6 bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200 hover:border-cyan-600/30 transition-all duration-300 shadow-sm hover:shadow-md"
+              className="p-6 bg-gray-800/80 backdrop-blur-sm rounded-xl border border-gray-600 hover:border-cyan-600/30 transition-all duration-300 shadow-sm hover:shadow-md animate-fade-in-up hover:scale-105"
+              style={{ animationDelay: `${categoryIndex * 0.2}s` }}
             >
               <h3 className="text-xl font-semibold mb-6 text-cyan-600">{category.title}</h3>
               <div className="space-y-4">
                 {category.skills.map((skill, skillIndex) => (
                   <div key={skillIndex} className="space-y-2">
                     <div className="flex justify-between items-center">
-                      <span className="text-gray-700">{skill.name}</span>
+                      <span className="text-gray-300">{skill.name}</span>
                       <span className="text-cyan-600 text-sm">{skill.level}%</span>
                     </div>
-                    <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div className="w-full bg-gray-600 rounded-full h-2">
                       <div
-                        className="h-2 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full transition-all duration-1000 ease-out"
+                        className="h-2 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full transition-all duration-1000 ease-out animate-skill-bar"
                         style={{ width: `${skill.level}%` }}
                       />
                     </div>

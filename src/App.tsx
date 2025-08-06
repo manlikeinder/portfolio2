@@ -57,7 +57,7 @@ function App() {
     }
   };
   return (
-    <div className="min-h-screen bg-white text-gray-900 overflow-x-hidden">
+    <div className="min-h-screen bg-gray-900 text-white overflow-x-hidden">
       <Navigation activeSection={activeSection} />
       
       <main>
@@ -73,16 +73,16 @@ function App() {
       <div className="fixed bottom-6 right-6 z-50 flex flex-col space-y-3">
         <button
           onClick={() => setIsAIToolsOpen(true)}
-          className="bg-gradient-to-r from-purple-600 to-pink-600 p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 group"
+          className="bg-gradient-to-r from-purple-600 to-pink-600 p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 group animate-bounce-slow"
         >
-          <Bot size={24} className="group-hover:rotate-12 transition-transform" />
+          <Bot size={24} className="group-hover:rotate-12 transition-transform text-white" />
         </button>
         
         <button
           onClick={() => setIsChatOpen(true)}
-          className="bg-gradient-to-r from-blue-600 to-cyan-600 p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110"
+          className="bg-gradient-to-r from-blue-600 to-cyan-600 p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 animate-pulse-slow"
         >
-          <MessageCircle size={20} />
+          <MessageCircle size={20} className="text-white" />
         </button>
       </div>
 

@@ -119,14 +119,14 @@ const Projects: React.FC = () => {
   }
 
   return (
-    <section id="projects" className="py-20 px-4 bg-gray-50">
+    <section id="projects" className="py-20 px-4 bg-gray-800">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent animate-fade-in-up">
             GitHub Projects
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-cyan-600 mx-auto rounded-full"></div>
-          <p className="text-gray-600 mt-6 max-w-2xl mx-auto">
+          <p className="text-gray-300 mt-6 max-w-2xl mx-auto">
             Explore my latest projects from GitHub, automatically categorized by technology and purpose.
           </p>
         </div>
@@ -140,7 +140,7 @@ const Projects: React.FC = () => {
               className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                 selectedCategory === category
                   ? 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white shadow-lg'
-                  : 'bg-white text-gray-600 border border-gray-200 hover:border-cyan-600 hover:text-cyan-600'
+                  : 'bg-gray-700 text-gray-300 border border-gray-600 hover:border-cyan-600 hover:text-cyan-600 hover:scale-105'
               }`}
             >
               {category}
@@ -158,15 +158,15 @@ const Projects: React.FC = () => {
           {filteredRepos.map((repo) => (
             <div
               key={repo.id}
-              className="group bg-white backdrop-blur-sm rounded-xl border border-gray-200 overflow-hidden hover:border-cyan-600/50 transition-all duration-300 hover:transform hover:scale-[1.02] shadow-sm hover:shadow-lg"
+              className="group bg-gray-700 backdrop-blur-sm rounded-xl border border-gray-600 overflow-hidden hover:border-cyan-600/50 transition-all duration-300 hover:transform hover:scale-[1.02] shadow-sm hover:shadow-lg animate-fade-in-up"
             >
               <div className="p-6">
                 <div className="flex items-start justify-between mb-3">
-                  <h3 className="text-lg font-semibold text-gray-900 group-hover:text-cyan-600 transition-colors line-clamp-1">
+                  <h3 className="text-lg font-semibold text-white group-hover:text-cyan-600 transition-colors line-clamp-1">
                     {repo.name}
                   </h3>
                   <div className="flex items-center space-x-2">
-                    <span className="text-gray-500 text-sm">{repo.stargazers_count}</span>
+                    <span className="text-gray-400 text-sm">{repo.stargazers_count}</span>
                     <svg className="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                     </svg>
@@ -174,7 +174,7 @@ const Projects: React.FC = () => {
                 </div>
                 
                 {repo.description && (
-                  <p className="text-gray-600 mb-4 text-sm leading-relaxed line-clamp-2">
+                  <p className="text-gray-300 mb-4 text-sm leading-relaxed line-clamp-2">
                     {repo.description}
                   </p>
                 )}
@@ -183,7 +183,7 @@ const Projects: React.FC = () => {
                   {repo.language && (
                     <div className="flex items-center space-x-2">
                       <div className={`w-3 h-3 rounded-full ${getLanguageColor(repo.language)}`}></div>
-                      <span className="text-sm text-gray-600">{repo.language}</span>
+                      <span className="text-sm text-gray-300">{repo.language}</span>
                     </div>
                   )}
                   <span className="px-3 py-1 bg-cyan-100 text-cyan-700 rounded-full text-xs font-medium">
@@ -196,13 +196,13 @@ const Projects: React.FC = () => {
                     {repo.topics.slice(0, 3).map((topic, index) => (
                       <span
                         key={index}
-                        className="px-2 py-1 bg-gray-100 text-gray-600 rounded text-xs"
+                        className="px-2 py-1 bg-gray-600 text-gray-300 rounded text-xs"
                       >
                         {topic}
                       </span>
                     ))}
                     {repo.topics.length > 3 && (
-                      <span className="px-2 py-1 bg-gray-100 text-gray-600 rounded text-xs">
+                      <span className="px-2 py-1 bg-gray-600 text-gray-300 rounded text-xs">
                         +{repo.topics.length - 3}
                       </span>
                     )}
@@ -210,7 +210,7 @@ const Projects: React.FC = () => {
                 )}
                 
                 <div className="flex items-center justify-between">
-                  <span className="text-xs text-gray-500">
+                  <span className="text-xs text-gray-400">
                     Updated {new Date(repo.updated_at).toLocaleDateString()}
                   </span>
                   <div className="flex space-x-3">
@@ -218,7 +218,7 @@ const Projects: React.FC = () => {
                       href={repo.html_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center space-x-1 text-gray-500 hover:text-cyan-600 transition-colors"
+                      className="flex items-center space-x-1 text-gray-400 hover:text-cyan-600 transition-colors"
                     >
                       <Github size={16} />
                       <span className="text-sm">Code</span>
@@ -228,7 +228,7 @@ const Projects: React.FC = () => {
                         href={repo.html_url.replace('github.com', 'github.io').replace('.git', '')}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center space-x-1 text-gray-500 hover:text-cyan-600 transition-colors"
+                        className="flex items-center space-x-1 text-gray-400 hover:text-cyan-600 transition-colors"
                       >
                         <ExternalLink size={16} />
                         <span className="text-sm">Demo</span>
@@ -243,7 +243,7 @@ const Projects: React.FC = () => {
 
         {filteredRepos.length === 0 && (
           <div className="text-center py-12">
-            <div className="text-gray-500 mb-4">
+            <div className="text-gray-400 mb-4">
               <Filter size={48} className="mx-auto mb-4 opacity-50" />
               <p className="text-lg">No projects found in this category</p>
               <p className="text-sm">Try selecting a different category</p>

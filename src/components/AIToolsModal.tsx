@@ -39,6 +39,16 @@ const AIToolsModal: React.FC<AIToolsModalProps> = ({ isOpen, onClose, onSelectTo
     }
   ];
 
+  const speakText = (text: string) => {
+    if ('speechSynthesis' in window) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.rate = 0.8;
+      utterance.pitch = 1;
+      utterance.volume = 0.8;
+      speechSynthesis.speak(utterance);
+    }
+  };
+
   if (!isOpen) return null;
 
   return (
@@ -61,16 +71,17 @@ const AIToolsModal: React.FC<AIToolsModalProps> = ({ isOpen, onClose, onSelectTo
             <button
               key={tool.id}
               onClick={() => {
+                speakText(`Opening ${tool.title}. ${tool.description}`);
                 onSelectTool(tool.id);
                 onClose();
               }}
-              className="w-full p-4 bg-gradient-to-r text-white rounded-lg hover:scale-[1.02] transition-all duration-300 shadow-lg hover:shadow-xl"
+              className="w-full p-4 bg-gradient-to-r text-white rounded-lg hover:scale-[1.02] transition-all duration-300 shadow-lg hover:shadow-xl animate-fade-in-up"
               style={{
                 background: `linear-gradient(135deg, var(--tw-gradient-stops))`,
                 backgroundImage: `linear-gradient(135deg, ${tool.color.split(' ')[0].replace('from-', '')} 0%, ${tool.color.split(' ')[1].replace('to-', '')} 100%)`
               }}
             >
-              <div className="flex items-center space-x-3">
+              <div className="flex items-center space-x-3 animate-slide-in">
                 <div className="p-2 bg-white/20 rounded-lg backdrop-blur-sm">
                   {tool.icon}
                 </div>
